@@ -1312,10 +1312,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3970288ba5810e74e942a16ff59bcd52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ballSprite: {fileID: 21300000, guid: 3acdcf08943bb834b9e2130ca0008b2e, type: 3}
+  _ballSprites:
+  - {fileID: 21300000, guid: 74d7ba0f5fc2349489c5be1bb50309ec, type: 3}
+  - {fileID: 21300000, guid: 13a8a4571e076794d8997982cbe130e9, type: 3}
+  - {fileID: 21300000, guid: cfea9741599225246be76c75577041d9, type: 3}
+  - {fileID: 21300000, guid: 2b15243edc25cfb4d9de6aa755398d90, type: 3}
+  - {fileID: 21300000, guid: 3acdcf08943bb834b9e2130ca0008b2e, type: 3}
+  - {fileID: 21300000, guid: 4adb127415c4aaa40b37bd8569ea7bf3, type: 3}
+  - {fileID: 21300000, guid: ad270c65eb60f5642a4515ee5df4ccdf, type: 3}
+  - {fileID: 21300000, guid: 4e4f307799699934685ee62e90306af4, type: 3}
+  - {fileID: 21300000, guid: 4770dcd82227aaa4a8584515a74824be, type: 3}
   _ballImage: {fileID: 2001956947}
+  _background: {fileID: 1692126933}
+  _floor: {fileID: 1542096999}
+  _ceiling: {fileID: 1333718998}
+  _bowl: {fileID: 2122443797}
   _goalCountText: {fileID: 1864312244}
-  _goalCount: 1
+  _win: {fileID: 434109888}
 --- !u!4 &750040341
 Transform:
   m_ObjectHideFlags: 0
@@ -2542,7 +2555,7 @@ GameObject:
   - component: {fileID: 1692126934}
   - component: {fileID: 1692126933}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2589,15 +2602,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2242b0eb3597c02499c75e7314a379a2, type: 3}
-  m_Color: {r: 0.6648803, g: 0.52420795, b: 0.7169812, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 2e4ac3572ffb5dc4e9ded503d97330e6, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.06, y: 1}
+  m_Size: {x: 3.9, y: 8.44}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1692126934
@@ -2609,8 +2622,8 @@ Transform:
   m_GameObject: {fileID: 1692126932}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.33, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.6, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2950,7 +2963,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -43, y: -150}
-  m_SizeDelta: {x: 240, y: 175}
+  m_SizeDelta: {x: 250, y: 175}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1748526795
 MonoBehaviour:
@@ -3380,8 +3393,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 20, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 32, y: 0}
+  m_SizeDelta: {x: 165, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1864312244
 MonoBehaviour:
@@ -3403,7 +3416,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0
+  m_text: 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c872746383d82744b8b23319e252455a, type: 2}
   m_sharedMaterial: {fileID: -5633125273450528879, guid: c872746383d82744b8b23319e252455a, type: 2}
@@ -3430,8 +3443,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
-  m_fontSizeBase: 72
+  m_fontSize: 64
+  m_fontSizeBase: 64
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3582,7 +3595,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 20.1, y: 0}
+  m_AnchoredPosition: {x: 15, y: 0}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &2001956947

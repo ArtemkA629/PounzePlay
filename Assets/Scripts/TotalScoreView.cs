@@ -1,3 +1,4 @@
+using System.Globalization;
 using TMPro;
 using UnityEngine;
 
@@ -7,6 +8,6 @@ public class TotalScoreView : MonoBehaviour
 
     private void Start()
     {
-        _totalScoreCountText.text = GameSettings.TotalScore.ToString();
+        _totalScoreCountText.text = GameSettings.TotalScore.ToString("#,0", CultureInfo.InvariantCulture);
     }
 }

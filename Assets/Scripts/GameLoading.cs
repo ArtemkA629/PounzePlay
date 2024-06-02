@@ -4,20 +4,42 @@ using UnityEngine.UI;
 
 public class GameLoading : MonoBehaviour
 {
-    [SerializeField] private Sprite _ballSprite;
+    [SerializeField] private Sprite[] _ballSprites;
     [SerializeField] private Image _ballImage;
+    [SerializeField] private SpriteRenderer _background;
+    [SerializeField] private SpriteRenderer _floor;
+    [SerializeField] private SpriteRenderer _ceiling;
+    [SerializeField] private SpriteRenderer _bowl;
     [SerializeField] private TextMeshProUGUI _goalCountText;
-    [SerializeField] private int _goalCount;
+    [SerializeField] private GameResult _win;
 
     private Goal _goal;
 
     public Goal Goal => _goal;
 
-    private void Awake()
+    private void OnEnable()
     {
-        _goal = new Goal(_ballSprite, _goalCount);
-        _ballImage.sprite = _ballSprite;
-        _goalCountText.text = _goalCount.ToString();
-        GameSettings.GoalSprite = _ballSprite;
+        var ballSprite = _ballSprites[Random.Range(0, _ballSprites.Length - 1)];
+        _ballImage.sprite = ballSprite;
+        GameSettings.GoalSprite = ballSprite;
+
+        SetGoal(GameSettings.GoalCount);
+        SetBowl(GameSettings.CurrentBowlCard);
+        _background.sprite = GameSettings.CurrentBackground.BackgroundImage.sprite;
+
+        _win.SubscribeEvents();
+    }
+
+    private void SetGoal(int goalCount)
+    {
+        _goal = new Goal(GameSettings.GoalSprite, goalCount);
+        _goalCountText.text = goalCount.ToString();
+    }
+
+    private void SetBowl(BowlCard currentBowlCard)
+    {
+        _floor.color = currentBowlCard.EnvironmentColor;
+        _ceiling.color = currentBowlCard.EnvironmentColor;
+        _bowl.sprite = currentBowlCard.Sprite;
     }
 }

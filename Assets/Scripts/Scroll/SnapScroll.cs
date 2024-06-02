@@ -36,7 +36,7 @@ public class SnapScroll : MonoBehaviour
                 for (int j = 0; j < _positions.Length; j++)
                     if (j != i)
                         ChangeScale(j, 1f, 1f, out _, false);
-                    else if (_currentBowlCard == null || _currentBowlCard.Type != bowlCard.Type)
+                    else if (_currentBowlCard == null || _currentBowlCard != bowlCard)
                     {
                         _currentBowlCard = bowlCard;
                         CardChanged?.Invoke(bowlCard);
@@ -49,12 +49,12 @@ public class SnapScroll : MonoBehaviour
         return _scrollPosition < _positions[number] + (distance / 2) && _scrollPosition > _positions[number] - (distance / 2);
     }
 
-    private void ChangeScale(int number, float xRatio, float yRatio, out BowlCard bowlImage, bool setActive)
+    private void ChangeScale(int number, float xRatio, float yRatio, out BowlCard bowlImage, bool canScale)
     {
-        var scalableImage = transform.GetChild(number).GetChild(0);
-        scalableImage.localScale =
-            Vector2.Lerp(scalableImage.localScale, new Vector2(xRatio, yRatio), 0.1f);
-        bowlImage = transform.GetChild(number).GetComponent<BowlCard>();
-        scalableImage.gameObject.SetActive(setActive);
+        var scalableImage = transform.GetChild(number).GetComponent<Image>();
+        scalableImage.transform.localScale =
+            Vector2.Lerp(scalableImage.transform.localScale, new Vector2(xRatio, yRatio), 0.1f);
+        bowlImage = scalableImage.GetComponent<BowlCard>();
+        scalableImage.sprite = canScale ? bowlImage.SpriteCardWithBorders : bowlImage.StandartCardSprite;
     }
 }

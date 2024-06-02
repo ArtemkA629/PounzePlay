@@ -1,42 +1,42 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class SaveSystem : MonoBehaviour
+public static class SaveSystem
 {
-    /*
-    private readonly int _weaponItemsLength;
-
-    public SaveSystem(int weaponItemsLength)
+    public static void Load()
     {
-        _weaponItemsLength = weaponItemsLength;
+        GameSettings.SetTotalScore(PlayerPrefs.GetInt(SaveSystemConstants.TotalScore));
+        GameSettings.SetGoal(PlayerPrefs.GetInt(SaveSystemConstants.GoalCount));
+        Background startBackground = null;
+        var backgrounds = Resources.FindObjectsOfTypeAll<Background>();
+        foreach (var background in backgrounds)
+        {
+            if (PlayerPrefs.GetInt(background.name) == 1)
+                GameSettings.AvailiableBackgrounds.Add(background);
+            if (background.name == PlayerPrefs.GetString(SaveSystemConstants.CurrentBackground))
+                GameSettings.CurrentBackground = background;
+            if (background.ScoreToBuy == 0)
+                startBackground = background;
+        }
+
+        if (GameSettings.GoalCount == 0)
+            GameSettings.SetGoal(GoalConstants.AddingCount);
+
+        if (GameSettings.CurrentBackground != null)
+            return;
+
+        GameSettings.CurrentBackground = startBackground;
+        GameSettings.AvailiableBackgrounds.Add(startBackground);
     }
 
-    public void Save(SaveData saveData)
+    public static void Save()
     {
-        PlayerPrefs.SetInt(SaveSystemConstStrings.CoinsAmount, saveData.CoinsAmount);
-        PlayerPrefs.SetInt(SaveSystemConstStrings.CurrentWeaponIndex, saveData.CurrentWeaponIndex);
-        PlayerPrefs.SetInt(SaveSystemConstStrings.ChosenWeaponIndex, saveData.ChosenWeaponIndex);
-
-        var texts = saveData.WeaponCardTexts;
-        for (int i = 0; i < texts.Length; i++)
-            PlayerPrefs.SetString(SaveSystemConstStrings.WeaponCard + i, texts[i]);
+        PlayerPrefs.SetInt(SaveSystemConstants.TotalScore, GameSettings.TotalScore);
+        PlayerPrefs.SetInt(SaveSystemConstants.GoalCount, GameSettings.GoalCount);
+        if (SceneManager.GetActiveScene().buildIndex != 0)
+            return;
+        PlayerPrefs.SetString(SaveSystemConstants.CurrentBackground, GameSettings.CurrentBackground.name);
+        foreach (var background in GameSettings.AvailiableBackgrounds)
+            PlayerPrefs.SetInt(background.name, 1);
     }
-
-    public SaveData Load()
-    {
-        var data = new SaveData();
-
-        var weaponCardTexts = new string[_weaponItemsLength];
-        for (int i = 0; i < _weaponItemsLength; i++)
-            weaponCardTexts[i] = PlayerPrefs.GetString(SaveSystemConstStrings.WeaponCard + i);
-        data.WeaponCardTexts = weaponCardTexts;
-
-        data.CurrentWeaponIndex = PlayerPrefs.GetInt(SaveSystemConstStrings.CurrentWeaponIndex);
-        data.ChosenWeaponIndex = PlayerPrefs.GetInt(SaveSystemConstStrings.ChosenWeaponIndex);
-        data.CoinsAmount = PlayerPrefs.GetInt(SaveSystemConstStrings.CoinsAmount);
-
-        return data;
-    }
-    */
 }
