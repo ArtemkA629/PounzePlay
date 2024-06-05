@@ -25,7 +25,7 @@ public class GameLoading : MonoBehaviour
 
         SetGoal(GameSettings.GoalCount);
         SetBowl(GameSettings.CurrentBowlCard);
-        _background.sprite = GameSettings.CurrentBackground.BackgroundImage.sprite;
+        _background.sprite = GameSettings.CurrentBackground.MainBackground;
 
         _win.SubscribeEvents();
     }

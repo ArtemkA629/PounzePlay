@@ -6,11 +6,15 @@ public static class GameSettings
 {
     public static Sprite GoalSprite;
     public static BowlCard CurrentBowlCard;
-    public static Background CurrentBackground;
-    public static List<Background> AvailiableBackgrounds = new();
+    public static BackgroundInfo CurrentBackground;
+    public static List<BackgroundInfo> AvailiableBackgrounds = new();
+    public static bool OnBoardingShowed;
+    public static bool PlayerEntered;
 
     public static int GoalCount { get; private set; }
     public static int TotalScore { get; private set; }
+
+    public static event Action OnScoreChanged;
 
     public static void SetGoal(int goal)
     {
@@ -24,5 +28,6 @@ public static class GameSettings
         if (score < 0)
             throw new Exception("Invalid score");
         TotalScore = score;
+        OnScoreChanged?.Invoke();
     }
 }

@@ -121,9 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: WendyOne-Regular SDF With Red Shadows
   m_EditorClassIdentifier: 
-  hashCode: -800953085
+  hashCode: -1497112121
   material: {fileID: -5633125273450528879}
-  materialHashCode: 1546802371
+  materialHashCode: -1293152377
   m_Version: 1.1.0
   m_SourceFontFileGUID: a8441093f2c60174da917c405774804d
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: a8441093f2c60174da917c405774804d, type: 3}
