@@ -29,14 +29,14 @@ public class Background : MonoBehaviour
             _backgroundButtonText.text = BackgroundConstants.Chosen;
             _bought = true;
         }
-
-        foreach (var background in GameSettings.AvailiableBackgrounds)
-            if (name == background.Name)
-            {
-                _backgroundButtonText.text = BackgroundConstants.Choose;
-                _bought = true;
-                break;
-            }
+        else 
+            foreach (var background in GameSettings.AvailiableBackgrounds)
+                if (name == background.Name)
+                {
+                    _backgroundButtonText.text = BackgroundConstants.Choose;
+                    _bought = true;
+                    break;
+                }
 
         if (_bought)
             return;

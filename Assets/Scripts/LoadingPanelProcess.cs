@@ -8,7 +8,6 @@ public class LoadingPanelProcess : MonoBehaviour
 {
     [SerializeField] private Slider _slider;
     [SerializeField] private TextMeshProUGUI _loadingPercentText;
-    [SerializeField] private Webview _webview;
     [SerializeField] private GameObject _onboarding1;
     [SerializeField] private GameObject _mainMenu;
     [SerializeField] private GameObject _background;
@@ -29,13 +28,13 @@ public class LoadingPanelProcess : MonoBehaviour
 
         if (_slider.value == 1f)
         {
-            if (_webview.TryOnOnboarding() == false && _webview.gameObject.activeInHierarchy)
-                return;
-            else if (GameSettings.OnBoardingShowed)
+            if (GameSettings.OnBoardingShowed)
                 GoToMenu();
             else
+            {
                 _onboarding1.SetActive(true);
-            gameObject.SetActive(false);
+                gameObject.SetActive(false);
+            }
             return;
         }
 
